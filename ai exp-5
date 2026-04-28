@@ -1,0 +1,171 @@
+DOWNLOAD:-
+https://www.swi-prolog.org/download/stable
+	Click SWI-Prolog 10.0.2-1 for Microsoft Windows (64 bit)
+	☑ I understand
+	Click Download swipl-10.0.2-1.x64.exe
+
+Inside PROLOG:-
+•	Type  3 ?- working_directory(CWD, CWD).
+CWD = 'c:/users/ayushi firke/documents/prolog/'.
+•	Then save the file in this destination.
+•	consult('exp-5.pl').
+true.
+•	Then run queries.
+
+
+
+
+
+
+
+
+B.1	Software Code written by student:
+% Gender 
+male(john). 
+male(paul). 
+male(mike). 
+male(david).
+
+female(mary). 
+female(linda). 
+female(susan). 
+female(anna).
+
+% Parent Relationships 
+parent(john, paul). 
+parent(mary, paul).
+
+parent(john, linda). 
+parent(mary, linda).
+
+parent(paul, mike). 
+parent(susan, mike).
+
+parent(paul, anna). 
+parent(susan, anna).
+parent(linda, david). 
+father(X, Y) :-
+parent(X, Y),
+male(X).
+% Mother 
+mother(X, Y) :-
+parent(X, Y), 
+female(X).
+% Sibling 
+sibling(X, Y) :-
+parent(Z, X),
+parent(Z, Y), 
+X \= Y.
+% Grandparent 
+grandparent(X, Y) :-
+parent(X, Z),
+parent(Z, Y).
+
+% Grandfather 
+grandfather(X, Y) :-
+grandparent(X, Y), 
+male(X).
+% Grandmother 
+grandmother(X, Y) :-
+grandparent(X, Y),
+female(X).
+
+% Uncle 
+uncle(X, Y) :-
+sibling(X, Z),
+parent(Z, Y),
+male(X).
+% Aunt 
+aunt(X, Y) :-
+sibling(X, Z),
+parent(Z, Y), 
+female(X).
+
+
+
+
+
+
+
+
+
+B.2	Input and Output:
+🔥 1. Basic Fact Queries
+?- male(john).
+?- female(anna).
+?- parent(john, paul).
+✔ Checks if fact is true/false
+________________________________________
+🔥 2. Find Values (Very Important)
+?- father(X, paul).
+?- mother(X, anna).
+?- parent(X, mike).
+👉 Prolog finds who satisfies the relation
+________________________________________
+🔥 3. Sibling Queries
+?- sibling(paul, linda).
+?- sibling(X, anna).
+✔ Expected:
+•	paul & linda → true 
+•	sibling(X, anna) → mike 
+________________________________________
+🔥 4. Grandparent Queries
+?- grandparent(X, mike).
+?- grandfather(X, anna).
+?- grandmother(X, david).
+👉 Example result:
+•	john, mary are grandparents 
+________________________________________
+🔥 5. Uncle / Aunt Queries (IMPORTANT)
+?- uncle(X, anna).
+?- aunt(X, mike).
+👉 Output:
+•	uncle → false (no male sibling of parent) 
+•	aunt → linda 
+________________________________________
+🔥 6. Reverse Queries (Very Important in Viva)
+?- father(john, X).
+?- mother(mary, X).
+👉 Finds all children
+________________________________________
+🔥 7. Multiple Answers Query
+?- parent(X, Y).
+👉 Press ; to see all results
+________________________________________
+🔥 8. Combined Queries (Advanced)
+?- parent(X, Y), male(X).
+👉 All fathers
+________________________________________
+?- sibling(X, Y), female(X).
+👉 All female siblings
+________________________________________
+🔥 9. Check Relationships
+?- father(john, paul).
+?- mother(susan, anna).
+?- grandfather(john, mike).
+✔ Returns true/false
+________________________________________
+🔥 10. Useful Debug Queries
+?- listing.
+?- listing(parent).
+👉 Shows stored facts
+________________________________________
+🔥 IMPORTANT EXPECTED OUTPUTS (Exam Ready)
+Query	Output
+father(X, paul)	X = john
+mother(X, anna)	X = susan
+sibling(paul, linda)	true
+grandparent(X, mike)	john, mary
+uncle(X, anna)	false
+aunt(X, mike)	linda
+________________________________________
+🔥 Top Viva Questions Teacher May Ask
+👉 “Find all fathers”
+?- father(X, Y).
+👉 “Who are grandparents of Mike?”
+?- grandparent(X, mike).
+👉 “Why uncle query gives false?”
+👉 Because no male sibling exists
+________________________________________
+🔥 One-Line Viva Answer
+👉 “Queries in Prolog are used to retrieve information from facts and rules by matching variables with stored relationships.”
