@@ -1,0 +1,194 @@
+CODE – 1:
+def solve_monkey_banana():
+    m_pos = input("Monkey position (A/B/C): ").upper()
+    b_pos = input("Box position (A/B/C): ").upper()
+    target = input("Banana position (A/B/C): ").upper()
+    
+    print("\n--- ACTION LOG ---")
+    print(f"Step 1: Initial State (Monkey: {m_pos}, Box: {b_pos}, Banana: {target})")
+    
+    if m_pos != b_pos:
+        print(f"Step 2: Monkey walks from {m_pos} to {b_pos}")
+        m_pos = b_pos
+    else:
+        print(f"Step 2: Monkey is already at the box (Position {b_pos})")
+    
+    if b_pos != target:
+        print(f"Step 3: Monkey pushes box from {b_pos} to {target}")
+        m_pos = target
+        b_pos = target
+    else:
+        print(f"Step 3: Box is already under the banana (Position {target})")
+    
+    print(f"Step 4: Monkey climbs onto the box at {target}")
+    print(f"Step 5: Monkey reaches up and grabs the banana")
+    print("\n--- FINAL STATE ---")
+    print(f"Monkey: {m_pos}, Box: {b_pos}, Has Banana: True")
+
+solve_monkey_banana()
+
+
+
+
+
+
+
+
+CODE – 2:
+class State:
+    def __init__(self, monkey_pos, monkey_state, box_pos, banana_pos, has_banana):
+        self.monkey_pos = monkey_pos
+        self.monkey_state = monkey_state
+        self.box_pos = box_pos
+        self.banana_pos = banana_pos
+        self.has_banana = has_banana
+
+def walk(state, new_pos):
+    if state.monkey_state == "floor":
+        state.monkey_pos = new_pos
+        print("\nMonkey walks to", new_pos)
+
+def push_box(state, new_pos):
+    if state.monkey_pos == state.box_pos and state.monkey_state == "floor":
+        state.box_pos = new_pos
+        state.monkey_pos = new_pos
+        print("Monkey pushes the box to", new_pos)
+
+def climb(state):
+    if state.monkey_pos == state.box_pos:
+        state.monkey_state = "on_box"
+        print("Monkey climbs on the box")
+
+def grasp(state):
+    if state.monkey_state == "on_box" and state.box_pos == state.banana_pos:
+        state.has_banana = True
+        print("Monkey grasps the banana")
+
+# User Inputs
+monkey_pos = input("Enter monkey position (door/window/center): ")
+box_pos = input("Enter box position (door/window/center): ")
+banana_pos = input("Enter banana position (door/window/center): ")
+state = State(monkey_pos, "floor", box_pos, banana_pos, False)
+
+print("\nInitial State")
+print("Monkey Position:", state.monkey_pos)
+print("Box Position:", state.box_pos)
+print("Banana Position:", state.banana_pos)
+
+walk(state, state.box_pos)
+push_box(state, state.banana_pos)
+climb(state)
+grasp(state)
+
+if state.has_banana:
+    print("Monkey has got the banana!")
+else:
+    print("Monkey could not reach the banana.")
+
+
+
+
+
+
+
+
+CODE – 3:
+# State representation
+class State:
+    def __init__(self, monkey_pos, monkey_state, box_pos, banana_pos, has_banana):
+        self.monkey_pos = monkey_pos
+        self.monkey_state = monkey_state   # "floor" or "on_box"
+        self.box_pos = box_pos
+        self.banana_pos = banana_pos
+        self.has_banana = has_banana
+
+    # To compare states (for visited checking)
+    def __eq__(self, other):
+        return (self.monkey_pos == other.monkey_pos and
+                self.monkey_state == other.monkey_state and
+                self.box_pos == other.box_pos and
+                self.has_banana == other.has_banana)
+
+    def __hash__(self):
+        return hash((self.monkey_pos, self.monkey_state, self.box_pos, self.has_banana))
+
+
+# Goal Test (like "has" in theory)
+def is_goal(state):
+    return state.has_banana
+
+
+# Generate all possible next states (actions)
+def get_next_states(state):
+    states = []
+
+    positions = ["door", "window", "center"]
+
+    # Action: Walk
+    if state.monkey_state == "floor":
+        for pos in positions:
+            if pos != state.monkey_pos:
+                new_state = State(pos, "floor", state.box_pos, state.banana_pos, False)
+                states.append((new_state, f"Monkey walks to {pos}"))
+
+    # Action: Push box
+    if state.monkey_pos == state.box_pos and state.monkey_state == "floor":
+        for pos in positions:
+            if pos != state.box_pos:
+                new_state = State(pos, "floor", pos, state.banana_pos, False)
+                states.append((new_state, f"Monkey pushes box to {pos}"))
+
+    # Action: Climb
+    if state.monkey_pos == state.box_pos and state.monkey_state == "floor":
+        new_state = State(state.monkey_pos, "on_box", state.box_pos, state.banana_pos, False)
+        states.append((new_state, "Monkey climbs the box"))
+
+    # Action: Grasp
+    if state.monkey_state == "on_box" and state.box_pos == state.banana_pos:
+        new_state = State(state.monkey_pos, "on_box", state.box_pos, state.banana_pos, True)
+        states.append((new_state, "Monkey grasps the banana"))
+
+    return states
+
+
+# State-space search (DFS like canget)
+def canget(initial_state):
+    stack = [(initial_state, [])]
+    visited = set()
+
+    while stack:
+        state, path = stack.pop()
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+
+        if is_goal(state):
+            return path
+
+        for next_state, action in get_next_states(state):
+            stack.append((next_state, path + [action]))
+
+    return None
+
+
+# ---- User Input ----
+monkey_pos = input("Enter monkey position (door/window/center): ")
+box_pos = input("Enter box position (door/window/center): ")
+banana_pos = input("Enter banana position (door/window/center): ")
+
+initial_state = State(monkey_pos, "floor", box_pos, banana_pos, False)
+
+# ---- Solve ----
+result = canget(initial_state)
+
+# ---- Output ----
+if result:
+    print("\nSteps to get banana:")
+    for step in result:
+        print(step)
+    print("\nMonkey has got the banana!")
+else:
+    print("Monkey could not reach the banana.")
+
