@@ -1,0 +1,120 @@
+STEPS:-
+	Load .arff file
+	Select any attribute
+	Go to Classify tab
+	Choose meta  AttributeSelectedClassifier
+	Click start
+	Can choose other classifiers and compare
+
+
+WHAT TO WRITE ON ANSWER SHEET:-
+1. Aim
+To identify an AI problem, create a knowledge database, and apply a search method for optimization using WEKA.
+
+2. Problem Statement
+To predict whether to play or not based on weather conditions using classification techniques.
+
+3. Theory
+In Artificial Intelligence, an intelligent agent uses data (knowledge base) and applies algorithms (search methods) to make decisions.
+
+A dataset acts as a knowledge base
+An algorithm acts as a search method
+The goal is to find the best possible solution (optimization)
+
+4. Dataset Description (Knowledge Database)
+Dataset used: weather.nominal.arff
+
+Attributes:
+outlook (sunny, overcast, rainy)
+temperature (hot, mild, cool)
+humidity (high, normal)
+windy (true, false)
+
+Class Attribute:
+play (yes/no)
+
+5. Methodology (Steps in WEKA)
+Open WEKA and select Explorer
+Load dataset in Preprocess tab
+Select class attribute as “play”
+Go to Classify tab
+Apply J48 decision tree algorithm
+Click Start to train model
+Observe output (accuracy, decision tree)
+
+6. Search Method Used
+J48 Decision Tree Algorithm
+👉 It searches for best rules from data to make predictions
+
+7. Result
+Decision tree generated
+Example rule:
+IF outlook = sunny AND humidity = high → play = no
+Accuracy obtained from model
+
+8. Optimization
+Different algorithms (J48, Naïve Bayes, IBk) were applied
+Best accuracy model was selected
+
+9. Conclusion
+The dataset was used as a knowledge base and J48 algorithm was used as a search method to generate rules and optimize prediction accuracy.
+
+
+🔥 How to Tell Which Classifier is More Accurate (WEKA)
+When you run classifiers in WEKA → Classify tab, look at this section:
+________________________________________
+✅ 1. Correctly Classified Instances (MOST IMPORTANT)
+Example:
+Correctly Classified Instances    13     92.85 %
+Incorrectly Classified Instances   1      7.14 %
+👉 What to say:
+👉 “The classifier with higher correctly classified percentage is more accurate.”
+✔ This is the primary metric
+________________________________________
+✅ 2. Accuracy Formula (if teacher asks)
+👉 Accuracy =
+"Correct Predictions" /"Total Instances" ×100
+
+________________________________________
+✅ 3. Confusion Matrix (VERY IMPORTANT)
+Example:
+   a   b   <-- classified as
+   5   1   a = yes
+   0   8   b = no
+👉 How to explain:
+	Diagonal values = correct predictions ✔ 
+	Non-diagonal = errors ❌ 
+👉 “Higher diagonal values indicate better classifier performance.”
+________________________________________
+✅ 4. Precision, Recall, F-Measure
+You’ll see:
+Metric	Meaning
+Precision	How correct predictions are
+Recall	How many actual cases are found
+F-Measure	Balance of precision & recall
+👉 What to say in viva:
+👉 “Higher precision, recall and F-measure indicate better classifier performance.”
+________________________________________
+✅ 5. ROC Area (AUC) - Receiver Operating Characteristic
+Example:
+ROC Area = 0.95
+👉 Range: 0 to 1
+	Closer to 1 → better 
+	0.5 → random 
+👉 “Classifier with higher ROC value is more reliable.”
+________________________________________
+🔥 FINAL DECISION (What to Compare)
+When comparing classifiers (e.g., J48 vs Naive Bayes):
+👉 Say this:
+	Check Accuracy % 
+	Check F-Measure 
+	Check ROC Area 
+✔ The one with highest overall values = best classifier
+________________________________________
+🔥 PERFECT VIVA ANSWER (Say this)
+👉 “In WEKA, classifier performance is evaluated using accuracy, confusion matrix, precision, recall, F-measure, and ROC area. The classifier with higher accuracy, better diagonal values in confusion matrix, and higher F-measure and ROC value is considered more accurate.”
+________________________________________
+🔥 Simple Shortcut (If Nervous)
+👉 Just say:
+👉 “We compare classifiers based on correctly classified instances percentage. Higher percentage means better accuracy.”
+✔ This alone is enough for marks 👍
