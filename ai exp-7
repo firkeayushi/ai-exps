@@ -1,4 +1,45 @@
-CODE – 1:
+CODE - 1:
+def monkey_banana():
+    # User Input
+    monkey_pos = input("Enter monkey position (door/window/center): ")
+    box_pos = input("Enter box position (door/window/center): ")
+
+    banana_pos = "center"   # Fixed as per problem
+
+    print("\nInitial State")
+    print("Monkey Position:", monkey_pos)
+    print("Box Position:", box_pos)
+    print("Banana Position:", banana_pos)
+
+    # Step 1: Monkey walks to box
+    if monkey_pos != box_pos:
+        print("\nMonkey walks to", box_pos)
+        monkey_pos = box_pos
+
+    # Step 2: Monkey pushes box to center
+    if box_pos != banana_pos:
+        print("Monkey pushes the box to", banana_pos)
+        box_pos = banana_pos
+        monkey_pos = banana_pos
+
+    # Step 3: Monkey climbs the box
+    print("Monkey climbs on the box")
+
+    # Step 4: Monkey grasps banana
+    if monkey_pos == banana_pos:
+        print("Monkey grasps the banana")
+        print("Monkey has got the banana!")
+    else:
+        print("Monkey cannot reach the banana")
+
+# Run
+monkey_banana()
+
+
+
+
+
+CODE – 2:
 def solve_monkey_banana():
     m_pos = input("Monkey position (A/B/C): ").upper()
     b_pos = input("Box position (A/B/C): ").upper()
@@ -34,7 +75,7 @@ solve_monkey_banana()
 
 
 
-CODE – 2:
+CODE – 3:
 class State:
     def __init__(self, monkey_pos, monkey_state, box_pos, banana_pos, has_banana):
         self.monkey_pos = monkey_pos
@@ -92,7 +133,7 @@ else:
 
 
 
-CODE – 3:
+CODE – 4:
 # State representation
 class State:
     def __init__(self, monkey_pos, monkey_state, box_pos, banana_pos, has_banana):
