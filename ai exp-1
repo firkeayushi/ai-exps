@@ -1,0 +1,224 @@
+PEAS Descriptors provide a structured way to specify the task environment of an intelligent agent in Artificial Intelligence. PEAS stands for Performance measure, Environment, Actuators, and Sensors. Together, these components define what the agent should do, where it operates, how it acts, and how it perceives the world.
+1. Performance Measure (P)
+The performance measure defines the criteria for evaluating how successfully an agent performs its task. It reflects the goals the agent is trying to achieve and should be designed from the user’s perspective, not the agent’s internal workings.
+•	It answers the question: How do we judge the agent’s success?
+•	A good performance measure encourages desired behavior and discourages undesired actions.
+A well-defined performance measure is crucial because it directly influences the agent’s decision-making strategy.
+
+2. Environment (E)
+The environment is everything external to the agent with which it interacts. It includes all physical, digital, or simulated surroundings that can affect or be affected by the agent’s actions.
+•	It answers the question: Where does the agent operate?
+•	The environment determines the complexity of the problem and the type of AI techniques required.
+Understanding the environment helps in identifying challenges such as uncertainty, dynamics, and observability.
+
+3. Actuators (A)
+Actuators are the mechanisms through which an agent takes actions and influences the environment. They convert the agent’s decisions into physical or digital actions.
+•	They answer the question: How does the agent act?
+•	The range and precision of actuators limit what the agent can achieve.
+The choice of actuators determines the agent’s ability to carry out its goals effectively.
+
+4. Sensors (S)
+Sensors allow the agent to perceive its environment by collecting information about external conditions and internal states.
+•	They answer the question: How does the agent perceive the environment?
+•	Sensor accuracy and coverage affect the agent’s awareness and decision quality.
+Sensors define what the agent can observe, which directly impacts whether the environment is fully or partially observable.
+
+
+
+
+
+
+
+EXAMPLES :-
+🔥 1. Google Maps Navigation System
+🔹 PEAS Description
+Performance (P)
+•	Accurate directions 
+•	Minimum travel time 
+•	Avoid traffic congestion 
+•	Fuel-efficient routes 
+•	User satisfaction 
+•	Safe navigation 
+________________________________________
+Environment (E)
+•	Roads (highways, streets) 
+•	Traffic conditions 
+•	Weather conditions 
+•	Accidents / roadblocks 
+•	GPS satellites 
+•	Users (drivers, pedestrians) 
+________________________________________
+Actuators (A)
+•	Display routes on screen 
+•	Voice navigation 
+•	Rerouting suggestions 
+•	Notifications/alerts 
+________________________________________
+Sensors (S)
+•	GPS location 
+•	User input (source/destination) 
+•	Traffic data from users 
+•	Internet/map database 
+________________________________________
+🔹 Environment Properties + Justification
+1) Observability → Partially Observable
+👉 Cannot know future traffic or hidden road conditions completely
+________________________________________
+2) Deterministic / Stochastic → Stochastic
+👉 Traffic, weather, accidents are unpredictable
+________________________________________
+3) Episodic / Sequential → Sequential
+👉 Each turn affects next decision
+________________________________________
+4) Static / Dynamic → Dynamic
+👉 Traffic keeps changing continuously
+________________________________________
+5) Discrete / Continuous → Continuous
+👉 Position, speed, time change continuously
+________________________________________
+6) Single / Multi-Agent → Multi-Agent
+👉 Many drivers influence traffic
+________________________________________
+7) Known / Unknown → Partially Known
+👉 Maps known, but real-time conditions uncertain
+________________________________________
+
+🔥 2. Self-Driving Car
+🔹 PEAS
+P
+•	Safety 
+•	Minimum accidents 
+•	Comfort 
+•	Fuel efficiency 
+E
+•	Roads, vehicles, pedestrians 
+•	Traffic signals 
+•	Weather 
+A
+•	Steering 
+•	Brakes 
+•	Accelerator 
+S
+•	Cameras 
+•	LiDAR 
+•	Radar 
+•	GPS 
+________________________________________
+🔹 Properties + Justification
+Observability → Partially Observable
+👉 Sensors can miss hidden objects
+________________________________________
+Deterministic → Stochastic
+👉 Behavior of other vehicles unpredictable
+________________________________________
+Episodic → Sequential
+👉 Current action affects future driving
+________________________________________
+Static → Dynamic
+👉 Environment changes continuously
+________________________________________
+Continuous → Continuous
+👉 Speed, position are continuous
+________________________________________
+Multi-Agent → Multi-Agent
+👉 Many cars + pedestrians
+________________________________________
+Known → Partially Known
+👉 Rules known, but real-world uncertainty exists
+________________________________________
+
+🔥 3. Online Shopping Recommendation System (Amazon/Netflix)
+🔹 PEAS
+P
+•	Accuracy of recommendations 
+•	User engagement 
+•	Sales increase 
+E
+•	Users 
+•	Products 
+•	Reviews 
+•	Browsing history 
+A
+•	Show recommendations 
+•	Send notifications 
+S
+•	User clicks 
+•	Search history 
+•	Ratings 
+________________________________________
+🔹 Properties + Justification
+Observability → Partially Observable
+👉 Cannot know exact user preference
+________________________________________
+Deterministic → Stochastic
+👉 User behavior unpredictable
+________________________________________
+Episodic → Sequential
+👉 Past behavior affects future recommendations
+________________________________________
+Static → Dynamic
+👉 Preferences change over time
+________________________________________
+Discrete → Discrete
+👉 Items, clicks are countable
+________________________________________
+Multi-Agent → Multi-Agent
+👉 Many users interact
+________________________________________
+Known → Partially Known
+👉 Data known, but intentions unknown
+________________________________________
+
+🔥 4. Robot Vacuum Cleaner
+🔹 PEAS
+P
+•	Cleanliness 
+•	Time efficiency 
+•	Battery usage 
+E
+•	Rooms 
+•	Dirt 
+•	Obstacles 
+A
+•	Move 
+•	Suck dirt 
+S
+•	Dirt sensor 
+•	Bump sensor 
+________________________________________
+🔹 Properties + Justification
+Observability → Partially Observable
+👉 Cannot detect all dirt at once
+________________________________________
+Deterministic → Stochastic
+👉 Dirt placement uncertain
+________________________________________
+Episodic → Sequential
+👉 Cleaning path matters
+________________________________________
+Static → Dynamic
+👉 Dirt may appear again
+________________________________________
+Discrete → Discrete
+👉 Grid-like movement
+________________________________________
+Single-Agent → Single-Agent
+👉 Only one vacuum
+________________________________________
+Known → Partially Known
+👉 Map may be unknown initially
+________________________________________
+🔥 Exam Tip (Very Important)
+If question comes:
+👉 “Give PEAS with properties”
+✔ Write:
+1.	PEAS 
+2.	7 properties 
+3.	One-line justification 
+➡️ That’s enough for full marks
+________________________________________
+🔥 Super Short Memory Trick
+👉 P → Goal
+👉 E → Surroundings
+👉 A → Actions
+👉 S → Inputs
