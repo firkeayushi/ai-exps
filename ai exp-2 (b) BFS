@@ -1,0 +1,46 @@
+from collections import deque
+
+def bfs(graph, start, goal):
+    queue = deque([(start, [start])])
+    visited = set()
+
+    while queue:
+        node, path = queue.popleft()
+
+        if node == goal:
+            return path
+
+        if node not in visited:
+            visited.add(node)
+
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append((neighbor, path + [neighbor]))
+
+    return None
+
+
+# ---- Taking Input ----
+n = int(input("Enter number of nodes: "))
+
+graph = {}
+
+print("Enter adjacency list for each node (space-separated):")
+for i in range(n):
+    neighbors = input(f"Node {i}: ").strip()
+    
+    if neighbors == "":
+        graph[i] = []
+    else:
+        graph[i] = list(map(int, neighbors.split()))
+
+start = int(input("Enter start node: "))
+goal = int(input("Enter goal node: "))
+
+# ---- BFS Call ----
+result = bfs(graph, start, goal)
+
+if result:
+    print("BFS Path:", result)
+else:
+    print("No path found")
