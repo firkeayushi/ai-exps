@@ -169,3 +169,219 @@ ________________________________________
 ________________________________________
 🔥 One-Line Viva Answer
 👉 “Queries in Prolog are used to retrieve information from facts and rules by matching variables with stored relationships.”
+
+
+
+
+
+
+
+
+
+✅ Example 1: College / Student–Teacher System (Prolog)
+% ----------- Facts -----------
+
+% Students
+student(rahul).
+student(sneha).
+student(amit).
+student(priya).
+
+% Teachers
+teacher(dr_smith).
+teacher(dr_khan).
+
+% Subjects
+subject(math).
+subject(ai).
+subject(dbms).
+
+% Teacher teaches subject
+teaches(dr_smith, math).
+teaches(dr_smith, ai).
+teaches(dr_khan, dbms).
+
+% Students enrolled in subjects
+enrolled(rahul, math).
+enrolled(rahul, ai).
+enrolled(sneha, ai).
+enrolled(amit, dbms).
+enrolled(priya, math).
+
+% ----------- Rules -----------
+
+% A teacher teaches a student if student is enrolled in subject
+teaches_student(Teacher, Student) :-
+    teaches(Teacher, Subject),
+    enrolled(Student, Subject).
+
+% Classmates (same subject)
+classmate(X, Y) :-
+    enrolled(X, Subject),
+    enrolled(Y, Subject),
+    X \= Y.
+
+% Student studies under teacher
+studies_under(Student, Teacher) :-
+    teaches(Teacher, Subject),
+    enrolled(Student, Subject).
+
+% Common teacher between two students
+common_teacher(X, Y, Teacher) :-
+    studies_under(X, Teacher),
+    studies_under(Y, Teacher),
+    X \= Y.
+
+% Students taking multiple subjects
+multi_subject_student(Student) :-
+    enrolled(Student, S1),
+    enrolled(Student, S2),
+    S1 \= S2.
+________________________________________
+🧪 Execution Queries (VERY IMPORTANT)
+🔹 1. Who are students taught by Dr. Smith?
+?- teaches_student(dr_smith, X).
+👉 Output:
+X = rahul ;
+X = sneha ;
+X = priya.
+________________________________________
+🔹 2. Find classmates of Rahul
+?- classmate(rahul, X).
+👉 Output:
+X = sneha ;
+X = priya.
+________________________________________
+🔹 3. Which teacher teaches Rahul?
+?- studies_under(rahul, X).
+👉 Output:
+X = dr_smith.
+________________________________________
+🔹 4. Students having common teacher
+?- common_teacher(rahul, sneha, T).
+👉 Output:
+T = dr_smith.
+________________________________________
+🔹 5. Students studying multiple subjects
+?- multi_subject_student(X).
+👉 Output:
+X = rahul.
+✅ Example 2: Employee–Manager System
+% ----------- Facts -----------
+
+employee(rahul).
+employee(sneha).
+employee(amit).
+employee(priya).
+
+manager(boss1).
+manager(boss2).
+
+% Works under
+works_under(rahul, boss1).
+works_under(sneha, boss1).
+works_under(amit, boss2).
+works_under(priya, boss2).
+
+% ----------- Rules -----------
+
+% Colleagues (same manager)
+colleague(X, Y) :-
+    works_under(X, M),
+    works_under(Y, M),
+    X \= Y.
+
+% Manager of employee
+is_manager(M, E) :-
+    works_under(E, M).
+
+% Employees under same manager group
+team_member(X, Y) :-
+    colleague(X, Y).
+
+% Employee works in organization
+works(X) :-
+    employee(X).
+
+% Manager supervises employee
+supervises(M, E) :-
+    manager(M),
+    works_under(E, M).
+________________________________________
+🧪 Queries
+🔹 Colleagues of Rahul
+?- colleague(rahul, X).
+👉 Output:
+X = sneha.
+________________________________________
+🔹 Who is Rahul’s manager?
+?- is_manager(M, rahul).
+👉 Output:
+M = boss1.
+________________________________________
+🔹 Employees under boss2
+?- supervises(boss2, X).
+👉 Output:
+X = amit ;
+X = priya.
+________________________________________
+✅ Example 3: Doctor–Patient (Hospital System)
+% ----------- Facts -----------
+
+doctor(dr_smith).
+doctor(dr_khan).
+
+patient(rahul).
+patient(sneha).
+patient(amit).
+
+disease(fever).
+disease(covid).
+
+% Doctor treats disease
+treats(dr_smith, fever).
+treats(dr_khan, covid).
+
+% Patient has disease
+has_disease(rahul, fever).
+has_disease(sneha, covid).
+has_disease(amit, fever).
+
+% ----------- Rules -----------
+
+% Doctor treats patient
+treats_patient(Doctor, Patient) :-
+    treats(Doctor, Disease),
+    has_disease(Patient, Disease).
+
+% Patients with same disease
+same_disease(X, Y) :-
+    has_disease(X, D),
+    has_disease(Y, D),
+    X \= Y.
+
+% Doctor assigned to patient
+assigned_doctor(Patient, Doctor) :-
+    treats_patient(Doctor, Patient).
+
+% Check if patient is under same doctor
+same_doctor(X, Y) :-
+    assigned_doctor(X, D),
+    assigned_doctor(Y, D),
+    X \= Y.
+________________________________________
+🧪 Queries
+🔹 Which doctor treats Rahul?
+?- assigned_doctor(rahul, X).
+👉 Output:
+X = dr_smith.
+________________________________________
+🔹 Patients treated by Dr. Khan
+?- treats_patient(dr_khan, X).
+👉 Output:
+X = sneha.
+________________________________________
+🔹 Patients with same disease
+?- same_disease(rahul, X).
+👉 Output:
+X = amit.
