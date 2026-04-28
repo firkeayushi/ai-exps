@@ -1,0 +1,56 @@
+import heapq
+
+def lowest_cost_first_search(graph, start, goal):
+    priority_queue = [(0, start, [start])]
+    visited = set()
+
+    while priority_queue:
+        cost, node, path = heapq.heappop(priority_queue)
+
+        if node == goal:
+            return path, cost
+
+        if node not in visited:
+            visited.add(node)
+
+            for neighbor, weight in graph[node]:
+                if neighbor not in visited:
+                    heapq.heappush(
+                        priority_queue,
+                        (cost + weight, neighbor, path + [neighbor])
+                    )
+
+    return None, float('inf')
+
+
+# ---- Taking Input ----
+n = int(input("Enter number of nodes: "))
+
+graph = {}
+
+print("Enter neighbors with weights (format: neighbor weight):")
+for i in range(n):
+    node = input(f"Node name: ")
+    neighbors_input = input(f"Enter neighbors of {node}: ").strip()
+
+    edges = []
+    if neighbors_input != "":
+        parts = neighbors_input.split()
+        for j in range(0, len(parts), 2):
+            neighbor = parts[j]
+            weight = int(parts[j + 1])
+            edges.append((neighbor, weight))
+
+    graph[node] = edges
+
+start = input("Enter start node: ")
+goal = input("Enter goal node: ")
+
+# ---- Call Function ----
+path, cost = lowest_cost_first_search(graph, start, goal)
+
+if path:
+    print("Lowest Cost Path:", path)
+    print("Total Cost:", cost)
+else:
+    print("No path found")
