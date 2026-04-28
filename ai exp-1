@@ -61,7 +61,7 @@ Sensors (S)
 •	Internet/map database 
 ________________________________________
 🔹 Environment Properties + Justification
-1) Observability → Partially Observable
+1) Partially / Fully Observable → Partially
 👉 Cannot know future traffic or hidden road conditions completely
 ________________________________________
 2) Deterministic / Stochastic → Stochastic
@@ -105,25 +105,25 @@ S
 •	GPS 
 ________________________________________
 🔹 Properties + Justification
-Observability → Partially Observable
+1) Partially / Fully Observable → Partially 
 👉 Sensors can miss hidden objects
 ________________________________________
-Deterministic → Stochastic
+2) Deterministic / Stochastic → Stochastic
 👉 Behavior of other vehicles unpredictable
 ________________________________________
-Episodic → Sequential
+3) Episodic / Sequential → Sequential
 👉 Current action affects future driving
 ________________________________________
-Static → Dynamic
+4) Static / Dynamic → Dynamic
 👉 Environment changes continuously
 ________________________________________
-Continuous → Continuous
+5) Discrete / Continuous → Continuous
 👉 Speed, position are continuous
 ________________________________________
-Multi-Agent → Multi-Agent
+6) Single / Multi-Agent → Multi-Agent
 👉 Many cars + pedestrians
 ________________________________________
-Known → Partially Known
+7) Known / Unknown → Partially Known
 👉 Rules known, but real-world uncertainty exists
 ________________________________________
 
@@ -147,25 +147,25 @@ S
 •	Ratings 
 ________________________________________
 🔹 Properties + Justification
-Observability → Partially Observable
+1) Partially / Fully Observable → Partially 
 👉 Cannot know exact user preference
 ________________________________________
-Deterministic → Stochastic
+2) Deterministic / Stochastic → Stochastic
 👉 User behavior unpredictable
 ________________________________________
-Episodic → Sequential
+3) Episodic / Sequential → Sequential
 👉 Past behavior affects future recommendations
 ________________________________________
-Static → Dynamic
+4) Static / Dynamic → Dynamic
 👉 Preferences change over time
 ________________________________________
-Discrete → Discrete
+5) Discrete / Continuous → Discrete
 👉 Items, clicks are countable
 ________________________________________
-Multi-Agent → Multi-Agent
+6) Single / Multi-Agent → Multi-Agent
 👉 Many users interact
 ________________________________________
-Known → Partially Known
+7) Known / Unknown → Partially Known
 👉 Data known, but intentions unknown
 ________________________________________
 
@@ -187,25 +187,25 @@ S
 •	Bump sensor 
 ________________________________________
 🔹 Properties + Justification
-Observability → Partially Observable
+1) Partially / Fully Observable → Partially 
 👉 Cannot detect all dirt at once
 ________________________________________
-Deterministic → Stochastic
+2) Deterministic / Stochastic → Stochastic
 👉 Dirt placement uncertain
 ________________________________________
-Episodic → Sequential
+3) Episodic / Sequential → Sequential
 👉 Cleaning path matters
 ________________________________________
-Static → Dynamic
+4) Static / Dynamic → Dynamic
 👉 Dirt may appear again
 ________________________________________
-Discrete → Discrete
+5) Discrete / Continuous → Discrete
 👉 Grid-like movement
 ________________________________________
-Single-Agent → Single-Agent
+6) Single / Multi-Agent → Single-Agent
 👉 Only one vacuum
 ________________________________________
-Known → Partially Known
+7) Known / Unknown → Partially Known
 👉 Map may be unknown initially
 ________________________________________
 🔥 Exam Tip (Very Important)
