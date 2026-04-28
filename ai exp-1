@@ -10,6 +10,90 @@ The environment is everything external to the agent with which it interacts. It 
 •	It answers the question: Where does the agent operate?
 •	The environment determines the complexity of the problem and the type of AI techniques required.
 Understanding the environment helps in identifying challenges such as uncertainty, dynamics, and observability.
+🔹 1) Fully Observable vs Partially Observable
+✅ Fully Observable
+👉 The agent can access complete information about the environment at all times.
+✔ Example: Chess game
+✔ Justification: All pieces are visible
+
+❌ Partially Observable
+👉 The agent has limited or incomplete information.
+✔ Example: Self-driving car
+✔ Justification: Cannot detect hidden objects or future events
+
+🔹 2) Deterministic vs Stochastic
+✅ Deterministic
+👉 The next state is completely determined by current state and action.
+✔ Example: Calculator
+✔ Justification: Same input always gives same output
+
+❌ Stochastic
+👉 The next state is uncertain or probabilistic.
+✔ Example: Weather system
+✔ Justification: Outcomes are unpredictable
+
+🔹 3) Episodic vs Sequential
+✅ Episodic
+👉 Each action is independent of previous actions.
+✔ Example: Spam email filter
+✔ Justification: Each email is processed separately
+
+❌ Sequential
+👉 Actions depend on previous decisions.
+✔ Example: Chess, driving
+✔ Justification: Each move affects future moves
+
+🔹 4) Static vs Dynamic
+✅ Static
+👉 Environment does not change while agent is thinking.
+✔ Example: Crossword puzzle
+
+❌ Dynamic
+👉 Environment changes continuously.
+✔ Example: Traffic system
+✔ Justification: Cars keep moving
+
+🔹 5) Discrete vs Continuous
+✅ Discrete
+👉 Finite number of states/actions.
+✔ Example: Chess
+✔ Justification: Limited moves
+
+❌ Continuous
+👉 Infinite possible values.
+✔ Example: Self-driving car
+✔ Justification: Speed, position vary continuously
+
+🔹 6) Single-Agent vs Multi-Agent
+✅ Single-Agent
+👉 Only one agent operates.
+✔ Example: Sudoku solver
+
+❌ Multi-Agent
+👉 Multiple agents interact.
+✔ Example: Traffic system
+✔ Justification: Many drivers
+
+🔹 7) Known vs Unknown
+✅ Known
+👉 Agent knows all rules and outcomes.
+✔ Example: Chess rules
+
+❌ Unknown
+👉 Agent must learn environment.
+✔ Example: Robot exploring new area
+
+🔥 Super Short Revision (1 min)
+👉 Observable → Full / Partial
+👉 Deterministic → Predictable / Uncertain
+👉 Episodic → Independent
+👉 Sequential → Dependent
+👉 Static → No change
+👉 Dynamic → Changes
+👉 Discrete → Finite
+👉 Continuous → Infinite
+👉 Single / Multi Agent
+👉 Known / Unknown
 
 3. Actuators (A)
 Actuators are the mechanisms through which an agent takes actions and influences the environment. They convert the agent’s decisions into physical or digital actions.
